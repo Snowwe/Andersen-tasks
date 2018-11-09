@@ -1,4 +1,4 @@
-var personOriginal = {
+const personOriginal = {
     "id": 1,
     "name": "Leanne Graham",
     "username": "Bret",
@@ -24,22 +24,20 @@ var personOriginal = {
 
 // Create a deepCopy function
 
-var personCopy = deepCopy(personOriginal);
+let personCopy = deepCopy(personOriginal);
 
 personOriginal.address.geo.lat = "-47.3159";
+
 console.log(personCopy.address.geo.lat); // "-37.3159"
 
 function deepCopy(obj) {
 
-let newObj={};
+    let copy = {};
 
-    for (let prop in obj) {
-        if (obj.hasOwnProperty(prop)) {
-            newObj[prop] = obj[prop];
-        }
+    for (let key in obj) {
+
+        copy[key] =  ('object' === typeof obj[key]) ? deepCopy(obj[key]) : obj[key];
+
     }
-
-
-
-    return newObj;
+    return copy;
 }
