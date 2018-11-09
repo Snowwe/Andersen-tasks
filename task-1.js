@@ -36,7 +36,8 @@ function deepCopy(obj) {
 
     for (let key in obj) {
 
-        copy[key] =  ('object' === typeof obj[key]) ? deepCopy(obj[key]) : obj[key];
+        copy[key] =  ('object' === typeof obj[key] && obj[key] !== null)
+            ? deepCopy(obj[key]) : obj[key];
 
     }
     return copy;
